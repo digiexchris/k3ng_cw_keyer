@@ -68,9 +68,9 @@
 #define eeprom_write_time_ms 30000
 
 #ifdef FEATURE_COMMAND_BUTTONS
-  #define analog_buttons_number_of_buttons 4  // includes the command button (command button + 3 memory buttons = 4)
+  #define analog_buttons_number_of_buttons 13  // includes the command button (command button + 3 memory buttons = 4)
   #define analog_buttons_r1 10
-  #define analog_buttons_r2 1
+  #define analog_buttons_r2 220
 #endif
 
 
@@ -99,7 +99,7 @@
 
 
 #ifdef FEATURE_WINKEY_EMULATION
-  #ifdef OPTION_WINKEY_UCXLOG_9600_BAUD || defined(FEATURE_SO2R_BASE)
+  #ifdef OPTION_WINKEY_UCXLOG_9600_BAUD //|| defined(FEATURE_SO2R_BASE)
     #define WINKEY_DEFAULT_BAUD 9600
   #else
     #define WINKEY_DEFAULT_BAUD 1200
@@ -147,7 +147,7 @@
 
 
 #define PRIMARY_SERIAL_PORT &Serial
-#define PRIMARY_SERIAL_PORT_BAUD 115200     // This applies only when the port is in Command Line Interface mode.  In Winkey mode it will default to 1200.
+#define PRIMARY_SERIAL_PORT_BAUD 9600     // This applies only when the port is in Command Line Interface mode.  In Winkey mode it will default to 1200.
 
 #ifdef FEATURE_COMMAND_LINE_INTERFACE_ON_SECONDARY_PORT
   #define SECONDARY_SERIAL_PORT &Serial1
