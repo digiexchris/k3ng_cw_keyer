@@ -4,8 +4,8 @@
 
 // #define FEATURE_COMMAND_BUTTONS
 // #define FEATURE_COMMAND_LINE_INTERFACE  // Command Line Interface functionality
-// #define FEATURE_MEMORIES             // on the Arduino Due, you must have FEATURE_EEPROM_E24C1024 and E24C1024 EEPROM hardware in order to compile this
-// #define FEATURE_MEMORY_MACROS
+ #define FEATURE_MEMORIES             // on the Arduino Due, you must have FEATURE_EEPROM_E24C1024 and E24C1024 EEPROM hardware OR FEATURE_EEPROM_24XX1025 and 24xx1025 hardware in order to compile this
+ #define FEATURE_MEMORY_MACROS
 // #define FEATURE_WINKEY_EMULATION    // disabling Automatic Software Reset is highly recommended (see documentation)
 // #define FEATURE_BEACON
 // #define FEATURE_TRAINING_COMMAND_LINE_INTERFACE
@@ -42,6 +42,7 @@
 // #define FEATURE_PTT_INTERLOCK 
 // #define FEATURE_QLF
 // #define FEATURE_EEPROM_E24C1024
+ #define FEATURE_EEPROM_24XX1025 //  for EEPROM chips like AT24LC1025
 // #define FEATURE_STRAIGHT_KEY
 // #define FEATURE_DYNAMIC_DAH_TO_DIT_RATIO
 // #define FEATURE_PADDLE_ECHO
@@ -114,4 +115,3 @@
 // #define OPTION_EXCLUDE_MILL_MODE
 
 //#define OPTION_ENABLE_SERIAL_PORT_CHECKING_WHILE_SENDING_CW_MAY_CAUSE_PROBLEMS
-

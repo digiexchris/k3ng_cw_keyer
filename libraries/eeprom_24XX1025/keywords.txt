@@ -1,0 +1,5 @@
+EEPROM24	KEYWORD1
+read	KEYWORD2
+write	KEYWORD2
+read_page KEYWORD2
+write_page KEYWORD2

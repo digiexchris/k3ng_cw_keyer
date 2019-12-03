@@ -1212,6 +1212,16 @@ Recent Update History
   #define EEPROM EEPROM1024
 #endif 
 
+#ifdef FEATURE_EEPROM_24XX1025
+  //#include <EEPROM24.h>
+  #include <extEEPROM.h>
+  //#define EEPROM EEPROM1025
+
+  int a;
+
+  extEEPROM EEPROM(kbits_1024,1,127);
+#endif 
+
 #include "keyer_dependencies.h"
 #include "keyer_debug.h"
 
@@ -5748,7 +5758,7 @@ void check_ptt_tail()
 //-------------------------------------------------------------------------------------------------------
 void write_settings_to_eeprom(int initialize_eeprom) {  
  
-  #if !defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024))
+  #if !defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024)) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_24XX1025))
   
     if (initialize_eeprom) {
       //configuration.magic_number = eeprom_magic_number;
@@ -5768,7 +5778,7 @@ void write_settings_to_eeprom(int initialize_eeprom) {
 
     }
   
-  #endif //!defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024))
+  #endif //!defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024)) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_24XX1025))
 
   config_dirty = 0;
   
@@ -5788,7 +5798,7 @@ void service_async_eeprom_write(){
   if ((async_eeprom_write) && (!send_buffer_bytes) && (!ptt_line_activated) && (!dit_buffer) && (!dah_buffer) && (paddle_pin_read(paddle_left) == HIGH)  && (paddle_pin_read(paddle_right) == HIGH)) {  
     if (last_async_eeprom_write_status){ // we have an ansynchronous write to eeprom in progress
 
-#if defined(_BOARD_PIC32_PINGUINO_)
+#if (defined(_BOARD_PIC32_PINGUINO_) || defined(FEATURE_EEPROM_24XX1025))
       if (EEPROM.read(ee) != *p) {
         EEPROM.write(ee, *p);
       }
@@ -5836,7 +5846,7 @@ int read_settings_from_eeprom() {
     return 1;
   #endif
   
-  #if !defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024))
+  #if !defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024)) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_24XX1025))
 
     if (EEPROM.read(0) == eeprom_magic_number){
     
@@ -5862,7 +5872,7 @@ int read_settings_from_eeprom() {
       return 1;
     }
   
-  #endif //!defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024))
+  #endif //!defined(ARDUINO_SAM_DUE) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_E24C1024)) || (defined(ARDUINO_SAM_DUE) && defined(FEATURE_EEPROM_24XX1025))
 
 
  
